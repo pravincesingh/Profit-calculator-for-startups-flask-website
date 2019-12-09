@@ -1,11 +1,12 @@
 from flask import Flask, render_template ,request
-from sklearn.externals import joblib
+# from sklearn.externals import joblib
+import joblib
 import pandas as pd
 import numpy as np
 
 app =Flask(__name__)
 
-mul_reg =open("multiple_linear_model.pkl","rb")
+mul_reg =open("multiple_linear_r_model.pkl","rb")
 ml_model = joblib.load(mul_reg)
 
 @app.route("/")
@@ -35,4 +36,4 @@ def predict():
     return render_template("predict.html",prediction= model_prediction )
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0')
